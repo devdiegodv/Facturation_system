@@ -59,5 +59,9 @@ receipt_panel.pack()
 buttons_panel = Frame(right_panel, bd=1, relief=FLAT, bg="burlywood")
 buttons_panel.pack()
 
+# products list
+products_list = ["Chicken", "Lamb", "Salmon", "Bovine", "French Potatoes", "Sushi", "Casserole", "Carbonade"]
+
+
 # avoid window to be closed
 app.mainloop()
