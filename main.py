@@ -59,8 +59,14 @@ receipt_panel.pack()
 buttons_panel = Frame(right_panel, bd=1, relief=FLAT, bg="burlywood")
 buttons_panel.pack()
 
-# products list
+# food list
 products_list = ["Chicken", "Lamb", "Salmon", "Bovine", "French Potatoes", "Sushi", "Casserole", "Carbonade"]
+
+# food list
+drinks_list = ["Water", "Coffee", "Tea", "Juice", "Soda", "Milk", "Beer", "Wine"]
+
+# food list
+desserts_list = ["Cake", "Ice Cream", "Pie", "Cookies", "Brownie", "Cupcake", "Donut", "Tiramisu"]
 
 
 # avoid window to be closed
