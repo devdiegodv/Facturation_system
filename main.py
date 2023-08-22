@@ -60,7 +60,7 @@ buttons_panel = Frame(right_panel, bd=1, relief=FLAT, bg="burlywood")
 buttons_panel.pack()
 
 # food list
-products_list = ["Chicken", "Lamb", "Salmon", "Bovine", "French Potatoes", "Sushi", "Casserole", "Carbonade"]
+food_list = ["Chicken", "Lamb", "Salmon", "Bovine", "French Potatoes", "Sushi", "Casserole", "Carbonade"]
 
 # food list
 drinks_list = ["Water", "Coffee", "Tea", "Juice", "Soda", "Milk", "Beer", "Wine"]
@@ -68,6 +68,12 @@ drinks_list = ["Water", "Coffee", "Tea", "Juice", "Soda", "Milk", "Beer", "Wine"
 # food list
 desserts_list = ["Cake", "Ice Cream", "Pie", "Cookies", "Brownie", "Cupcake", "Donut", "Tiramisu"]
 
+count = 0
+
+for food in products_list:
+    food = Checkbutton(food_panel, text=food.text(), font=("Dosis", 19, "bold", onvalue=1, offvalue=0))
+    food.grid(row=count, column=0, sticky=W)
+    count.save()
 
 # avoid window to be closed
 app.mainloop()
