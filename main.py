@@ -63,7 +63,7 @@ buttons_panel.pack()
 food_list = ["Chicken", "Lamb", "Salmon", "Bovine", "French Potatoes", "Sushi", "Casserole", "Carbonade"]
 
 # drinks list
-drinks_list = ["Water", "Coffee", "Tea", "Juice", "Soda", "Milk", "Beer", "Wine"]
+drinks_list = ["Sprite", "Coffee", "Tea", "Juice", "Soda", "Milk", "Beer", "Wine"]
 
 # desserts list
 desserts_list = ["Cake", "Ice Cream", "Pie", "Cookies", "Brownie", "Cupcake", "Donut", "Tiramisu"]
@@ -71,35 +71,101 @@ desserts_list = ["Cake", "Ice Cream", "Pie", "Cookies", "Brownie", "Cupcake", "D
 
 # add food list to checkbuttons
 food_var = []
+food_box = []
+food_text = []
 count = 0
 
 for food in food_list:
+    # create checkbutton
     food_var.append("")
     food_var[count] = IntVar()
-    food = Checkbutton(food_panel, text=food.title(),font=('Dosis', 19, 'bold',),onvalue=1,offvalue=0, variable=food_var[count])
-    food.grid(row=count, column=0, sticky=W)
+    food = Checkbutton(food_panel,
+                       text=food.title(),
+                       font=('Dosis', 19, 'bold',),
+                       onvalue=1,
+                       offvalue=0,
+                       variable=food_var[count])
+    food.grid(row=count,
+              column=0,
+              sticky=W)
+
+    # create entry box
+    food_box.append("")
+    food_text.append("")
+    food_box[count] = Entry(food_panel,
+                            font=("Dosis", 18, "bold"),
+                            bd=1,
+                            width=6,
+                            state=DISABLED,
+                            textvariable=food_text[count])
+    food_box[count].grid(row=count,
+                         column=1)
     count += 1
 
 # add drinks list to checkbuttons
 drinks_var = []
+drinks_box = []
+drinks_text = []
 count = 0
 
 for drink in drinks_list:
+    # create checkbutton
     drinks_var.append("")
     drinks_var[count] = IntVar()
-    drink = Checkbutton(drinks_panel, text=drink.title(),font=('Dosis', 19, 'bold',),onvalue=1,offvalue=0, variable=drinks_var[count])
-    drink.grid(row=count, column=0, sticky=W)
+    drink = Checkbutton(drinks_panel,
+                        text=drink.title(),
+                        font=('Dosis', 19, 'bold',),
+                        onvalue=1,
+                        offvalue=0,
+                        variable=drinks_var[count])
+    drink.grid(row=count,
+               column=0,
+               sticky=W)
+
+    # create entry box
+    drinks_box.append("")
+    drinks_text.append("")
+    drinks_box[count] = Entry(drinks_panel,
+                            font=("Dosis", 18, "bold"),
+                            bd=1,
+                            width=6,
+                            state=DISABLED,
+                            textvariable=drinks_text[count])
+    drinks_box[count].grid(row=count,
+                         column=1)
     count += 1
 
 # add desserts list to checkbuttons
 desserts_var = []
+desserts_box = []
+desserts_text = []
 count = 0
 
-for dessert in drinks_list:
+for dessert in desserts_list:
+    # create checkbutton
     desserts_var.append("")
     desserts_var[count] = IntVar()
-    dessert = Checkbutton(desserts_panel, text=dessert.title(),font=('Dosis', 19, 'bold',),onvalue=1,offvalue=0, variable=desserts_var[count])
-    dessert.grid(row=count, column=0, sticky=W)
+    dessert = Checkbutton(desserts_panel,
+                          text=dessert.title(),
+                          font=('Dosis', 19, 'bold',),
+                          onvalue=1,
+                          offvalue=0,
+                          variable=desserts_var[count])
+    dessert.grid(row=count,
+                 column=0,
+                 sticky=W)
+
+    # create entry box
+    desserts_box.append("")
+    desserts_text.append("")
+    desserts_box[count] = Entry(desserts_panel,
+                            font=("Dosis", 18, "bold"),
+                            bd=1,
+                            width=6,
+                            state=DISABLED,
+                            textvariable=desserts_text[count])
+    desserts_box[count].grid(row=count,
+                         column=1)
     count += 1
 
 # avoid window to be closed
