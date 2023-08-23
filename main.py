@@ -92,6 +92,8 @@ for food in food_list:
     # create entry box
     food_box.append("")
     food_text.append("")
+    food_text[count] = StringVar()
+    food_text[count].set("0")
     food_box[count] = Entry(food_panel,
                             font=("Dosis", 18, "bold"),
                             bd=1,
@@ -125,6 +127,8 @@ for drink in drinks_list:
     # create entry box
     drinks_box.append("")
     drinks_text.append("")
+    drinks_text[count] = StringVar()
+    drinks_text[count].set("0")
     drinks_box[count] = Entry(drinks_panel,
                             font=("Dosis", 18, "bold"),
                             bd=1,
@@ -158,6 +162,8 @@ for dessert in desserts_list:
     # create entry box
     desserts_box.append("")
     desserts_text.append("")
+    desserts_text[count] = StringVar()
+    desserts_text[count].set("0")
     desserts_box[count] = Entry(desserts_panel,
                             font=("Dosis", 18, "bold"),
                             bd=1,
