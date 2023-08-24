@@ -20,7 +20,7 @@ top_panel = Frame(app, bd=1, relief=FLAT) # bd = border
 top_panel.pack(side=TOP) # place it on top
 
 # title label
-title_label = Label(top_panel, text="Facturation System", fg="azure4", font=("Dosis", 58), bg="burlywood", width=22)
+title_label = Label(top_panel, text="Facturation System", fg="white", font=("Dosis", 58), bg="green", width=22)
 title_label.grid(row=0, column=0)
 
 # left panel
@@ -65,15 +65,15 @@ right_panel = Frame(app, bd=1, relief=FLAT)
 right_panel.pack(side=RIGHT)
 
 # calculator panel
-calculator_panel = Frame(right_panel, bd=1, relief=FLAT, bg="burlywood")
+calculator_panel = Frame(right_panel, bd=1, relief=FLAT, bg="gray")
 calculator_panel.pack()
 
 # receipt panel
-receipt_panel = Frame(right_panel, bd=1, relief=FLAT, bg="burlywood")
+receipt_panel = Frame(right_panel, bd=1, relief=FLAT, bg="gray")
 receipt_panel.pack()
 
 # buttons panel
-buttons_panel = Frame(right_panel, bd=1, relief=FLAT, bg="burlywood")
+buttons_panel = Frame(right_panel, bd=1, relief=FLAT, bg="gray")
 buttons_panel.pack()
 
 # food list
@@ -325,6 +325,42 @@ receipt_text = Text(receipt_panel,
 
 receipt_text.grid(row=0,
                   column= 0)
+
+# calculator
+calculator_visor = Entry(calculator_panel,
+                         font=("Dosis", 16, "bold"),
+                         width=32,
+                         bd=1)
+
+calculator_visor.grid(row=0,
+                      column=0,
+                      columnspan=4)
+
+buttons_calculator = ["7", "8", "9", "+", "4", "5", "6", "-",
+                      "1", "2", "3", "x", "R", "B", "0", "/"]
+
+row = 1
+column = 0
+
+for button in buttons_calculator:
+    button = Button(calculator_panel,
+                    text=button.title(),
+                    font=("Dosis", 16, "bold"),
+                    fg="white",
+                    bg="azure4",
+                    bd=1,
+                    width=8)
+
+    button.grid(row=row,
+                column=column)
+
+    if column == 3:
+        row += 1
+
+    column += 1
+
+    if column == 4:
+        column = 0
 
 # avoid window to be closed
 app.mainloop()
