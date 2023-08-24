@@ -28,7 +28,7 @@ left_panel = Frame(app, bd=1, relief=FLAT)
 left_panel.pack(side=LEFT)
 
 # costs panel
-costs_panel = Frame(left_panel, bd=1, relief=FLAT)
+costs_panel = Frame(left_panel, bd=1, relief=FLAT, bg="azure4", padx=50)
 costs_panel.pack(side=BOTTOM)
 
 # food panel
@@ -173,6 +173,115 @@ for dessert in desserts_list:
     desserts_box[count].grid(row=count,
                          column=1)
     count += 1
+
+# label costs and entries products
+var_food_cost = StringVar()
+var_drink_cost = StringVar()
+var_dessert_cost = StringVar()
+var_subtotal = StringVar()
+var_total = StringVar()
+var_tax = StringVar()
+
+cost_label_food = Label(costs_panel,
+                        text="Food Cost",
+                        font=("Dosis", 12 ,"bold"),
+                        bg="azure4",
+                        fg="white")
+cost_label_food.grid(row=0, column=0, padx=41)
+
+food_cost_text = Entry(costs_panel,
+                       font=("Dosis", 12, "bold"),
+                       bd=1,
+                       width=10,
+                       state="readonly",
+                       textvariable=var_food_cost)
+
+food_cost_text.grid(row=0, column=1, padx=41)
+
+# drinks
+cost_label_drink = Label(costs_panel,
+                        text="Drink Cost",
+                        font=("Dosis", 12 ,"bold"),
+                        bg="azure4",
+                        fg="white")
+cost_label_drink.grid(row=1, column=0, padx=41)
+
+drink_cost_text = Entry(costs_panel,
+                       font=("Dosis", 12, "bold"),
+                       bd=1,
+                       width=10,
+                       state="readonly",
+                       textvariable=var_drink_cost)
+
+drink_cost_text.grid(row=1, column=1, padx=41)
+
+# dessert
+cost_label_dessert = Label(costs_panel,
+                        text="Dessert Cost",
+                        font=("Dosis", 12 ,"bold"),
+                        bg="azure4",
+                        fg="white")
+cost_label_dessert.grid(row=2, column=0, padx=41)
+
+dessert_cost_text = Entry(costs_panel,
+                       font=("Dosis", 12, "bold"),
+                       bd=1,
+                       width=10,
+                       state="readonly",
+                       textvariable=var_dessert_cost)
+
+dessert_cost_text.grid(row=2, column=1, padx=41)
+
+# subtotal
+var_subtotal = Label(costs_panel,
+                        text="Subtotal",
+                        font=("Dosis", 12 ,"bold"),
+                        bg="azure4",
+                        fg="white")
+var_subtotal.grid(row=0, column=2, padx=41)
+
+subtotal_text = Entry(costs_panel,
+                       font=("Dosis", 12, "bold"),
+                       bd=1,
+                       width=10,
+                       state="readonly",
+                       textvariable=var_subtotal)
+
+subtotal_text.grid(row=0, column=3, padx=41)
+
+# tax
+var_tax = Label(costs_panel,
+                        text="Tax",
+                        font=("Dosis", 12 ,"bold"),
+                        bg="azure4",
+                        fg="white")
+var_tax.grid(row=1, column=2, padx=41)
+
+tax_text = Entry(costs_panel,
+                       font=("Dosis", 12, "bold"),
+                       bd=1,
+                       width=10,
+                       state="readonly",
+                       textvariable=var_tax)
+
+tax_text.grid(row=1, column=3, padx=41)
+
+# total
+var_total = Label(costs_panel,
+                        text="Total",
+                        font=("Dosis", 12 ,"bold"),
+                        bg="azure4",
+                        fg="white")
+var_total.grid(row=2, column=2, padx=41)
+
+total_text = Entry(costs_panel,
+                       font=("Dosis", 12, "bold"),
+                       bd=1,
+                       width=10,
+                       state="readonly",
+                       textvariable=var_total)
+
+total_text.grid(row=2, column=3, padx=41)
 
 # avoid window to be closed
 app.mainloop()
