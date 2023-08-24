@@ -316,5 +316,15 @@ for button in buttons:
                 column=columns)
     columns += 1
 
+# receipt area
+receipt_text = Text(receipt_panel,
+                    font=("Dosis", 19, "bold"),
+                    bd=1,
+                    width=42,
+                    height=10)
+
+receipt_text.grid(row=0,
+                  column= 0)
+
 # avoid window to be closed
 app.mainloop()
