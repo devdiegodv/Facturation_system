@@ -4,7 +4,7 @@ from tkinter import *
 app = Tk()
 
 # screen size
-app.geometry("1360x630+0+0") #1020 width - 630height - 0x - 0y
+app.geometry("1250x630+0+0") #1020 width - 630height - 0x - 0y
 
 # avoid max screen
 app.resizable(False, False) # X and Y position can't be modified
@@ -41,11 +41,23 @@ food_panel = LabelFrame(left_panel,
 food_panel.pack(side=LEFT)
 
 # drinks panel
-drinks_panel = LabelFrame(left_panel, text="Drinks", font=("Dosis", 19, "bold"), bd=1, relief=FLAT, fg="azure4")
+drinks_panel = LabelFrame(left_panel,
+                          text="Drinks",
+                          font=("Dosis", 19, "bold"),
+                          bd=1,
+                          relief=FLAT,
+                          fg="goldenrod3")
+
 drinks_panel.pack(side=LEFT)
 
 # desserts panel
-desserts_panel = LabelFrame(left_panel, text="Desserts", font=("Dosis", 19, "bold"), bd=1, relief=FLAT, fg="azure4")
+desserts_panel = LabelFrame(left_panel,
+                            text="Desserts",
+                            font=("Dosis", 19, "bold"),
+                            bd=1,
+                            relief=FLAT,
+                            fg="goldenrod3")
+
 desserts_panel.pack(side=LEFT)
 
 # right panel
