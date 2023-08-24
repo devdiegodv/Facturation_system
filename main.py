@@ -4,7 +4,7 @@ from tkinter import *
 app = Tk()
 
 # screen size
-app.geometry("1020x630+0+0") #1020 width - 630height - 0x - 0y
+app.geometry("1360x630+0+0") #1020 width - 630height - 0x - 0y
 
 # avoid max screen
 app.resizable(False, False) # X and Y position can't be modified
@@ -32,7 +32,12 @@ costs_panel = Frame(left_panel, bd=1, relief=FLAT, bg="azure4", padx=50)
 costs_panel.pack(side=BOTTOM)
 
 # food panel
-food_panel = LabelFrame(left_panel, text="Food", font=("Dosis", 19, "bold"), bd=1, relief=FLAT, fg="azure4")
+food_panel = LabelFrame(left_panel,
+                        text="Food",
+                        font=("Dosis", 19, "bold"),
+                        bd=1,
+                        relief=FLAT,
+                        fg="goldenrod3")
 food_panel.pack(side=LEFT)
 
 # drinks panel
@@ -282,6 +287,22 @@ total_text = Entry(costs_panel,
                        textvariable=var_total)
 
 total_text.grid(row=2, column=3, padx=41)
+
+# buttons
+buttons = ["total", "receipt", "save", "reset"]
+columns = 0
+for button in buttons:
+    button = Button(buttons_panel,
+                    text=button.title(),
+                    font=("Dosis", 14, "bold"),
+                    fg="white",
+                    bg="azure4",
+                    bd=1,
+                    width=9)
+
+    button.grid(row=0,
+                column=columns)
+    columns += 1
 
 # avoid window to be closed
 app.mainloop()
