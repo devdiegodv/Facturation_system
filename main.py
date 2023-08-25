@@ -1,5 +1,25 @@
 from tkinter import *
 
+# operator calculator
+operator = ""
+
+def click_button(number):
+    global operator
+    operator = operator + number
+    calculator_visor.delete(0, END)
+    calculator_visor.insert(END, operator)
+
+def delete():
+    global operator
+    operator = ""
+    calculator_visor.delete(0, END)
+
+def get_result():
+    global operator
+    result = str(eval(operator))
+    calculator_visor.delete(0, END)
+    calculator_visor.insert(0, result)
+
 # init tkinterrr
 app = Tk()
 
@@ -20,15 +40,29 @@ top_panel = Frame(app, bd=1, relief=FLAT) # bd = border
 top_panel.pack(side=TOP) # place it on top
 
 # title label
-title_label = Label(top_panel, text="Facturation System", fg="white", font=("Dosis", 58), bg="green", width=22)
-title_label.grid(row=0, column=0)
+title_label = Label(top_panel,
+                    text="Facturation System",
+                    fg="white",
+                    font=("Dosis", 58),
+                    bg="green",
+                    width=22)
+
+title_label.grid(row=0,
+                 column=0)
 
 # left panel
-left_panel = Frame(app, bd=1, relief=FLAT)
+left_panel = Frame(app,
+                   bd=1,
+                   relief=FLAT)
+
 left_panel.pack(side=LEFT)
 
 # costs panel
-costs_panel = Frame(left_panel, bd=1, relief=FLAT, bg="azure4", padx=50)
+costs_panel = Frame(left_panel,
+                    bd=1, relief=FLAT,
+                    bg="azure4",
+                    padx=50)
+
 costs_panel.pack(side=BOTTOM)
 
 # food panel
@@ -61,7 +95,10 @@ desserts_panel = LabelFrame(left_panel,
 desserts_panel.pack(side=LEFT)
 
 # right panel
-right_panel = Frame(app, bd=1, relief=FLAT)
+right_panel = Frame(app,
+                    bd=1,
+                    relief=FLAT)
+
 right_panel.pack(side=RIGHT)
 
 # calculator panel
@@ -339,6 +376,8 @@ calculator_visor.grid(row=0,
 buttons_calculator = ["7", "8", "9", "+", "4", "5", "6", "-",
                       "1", "2", "3", "x", "R", "B", "0", "/"]
 
+saved_buttons = []
+
 row = 1
 column = 0
 
@@ -351,6 +390,8 @@ for button in buttons_calculator:
                     bd=1,
                     width=8)
 
+    saved_buttons.append(button)
+
     button.grid(row=row,
                 column=column)
 
@@ -361,6 +402,23 @@ for button in buttons_calculator:
 
     if column == 4:
         column = 0
+
+saved_buttons[0].config(command=lambda : click_button("7"))
+saved_buttons[1].config(command=lambda : click_button("8"))
+saved_buttons[2].config(command=lambda : click_button("9"))
+saved_buttons[3].config(command=lambda : click_button("+"))
+saved_buttons[4].config(command=lambda : click_button("4"))
+saved_buttons[5].config(command=lambda : click_button("5"))
+saved_buttons[6].config(command=lambda : click_button("6"))
+saved_buttons[7].config(command=lambda : click_button("-"))
+saved_buttons[8].config(command=lambda : click_button("1"))
+saved_buttons[9].config(command=lambda : click_button("2"))
+saved_buttons[10].config(command=lambda : click_button("3"))
+saved_buttons[11].config(command=lambda : click_button("*"))
+saved_buttons[13].config(command=delete)
+saved_buttons[14].config(command=lambda : click_button("0"))
+saved_buttons[15].config(command=lambda : click_button("/"))
+
 
 # avoid window to be closed
 app.mainloop()
