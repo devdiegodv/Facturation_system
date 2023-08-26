@@ -3,22 +3,61 @@ from tkinter import *
 # operator calculator
 operator = ""
 
+# click button
 def click_button(number):
     global operator
     operator = operator + number
     calculator_visor.delete(0, END)
     calculator_visor.insert(END, operator)
 
+# delete button
 def delete():
     global operator
     operator = ""
     calculator_visor.delete(0, END)
 
+# get result button
 def get_result():
     global operator
     result = str(eval(operator))
     calculator_visor.delete(0, END)
     calculator_visor.insert(0, result)
+    operator = ""
+
+# check what checklist was clicked so you can write
+def check_check():
+    x = 0
+    for f in food_box:
+        if food_var[x].get() == 1:
+            food_box[x].config(state=NORMAL)
+            food_box[x].delete(0, END)
+            food_box[x].focus()
+        else:
+            food_box[x].config(state=DISABLED)
+            food_text[x].set("0")
+        x += 1
+
+    x = 0
+    for f in drinks_box:
+        if drinks_var[x].get() == 1:
+            drinks_box[x].config(state=NORMAL)
+            drinks_box[x].delete(0, END)
+            drinks_box[x].focus()
+        else:
+            drinks_box[x].config(state=DISABLED)
+            drinks_text[x].set("0")
+        x += 1
+
+    x = 0
+    for f in desserts_box:
+        if desserts_var[x].get() == 1:
+            desserts_box[x].config(state=NORMAL)
+            desserts_box[x].delete(0, END)
+            desserts_box[x].focus()
+        else:
+            desserts_box[x].config(state=DISABLED)
+            desserts_text[x].set("0")
+        x += 1
 
 # init tkinterrr
 app = Tk()
@@ -138,7 +177,9 @@ for food in food_list:
                        font=('Dosis', 19, 'bold',),
                        onvalue=1,
                        offvalue=0,
-                       variable=food_var[count])
+                       variable=food_var[count],
+                       command=check_check)
+
     food.grid(row=count,
               column=0,
               sticky=W)
@@ -154,6 +195,7 @@ for food in food_list:
                             width=6,
                             state=DISABLED,
                             textvariable=food_text[count])
+
     food_box[count].grid(row=count,
                          column=1)
     count += 1
@@ -173,7 +215,9 @@ for drink in drinks_list:
                         font=('Dosis', 19, 'bold',),
                         onvalue=1,
                         offvalue=0,
-                        variable=drinks_var[count])
+                        variable=drinks_var[count],
+                        command=check_check)
+
     drink.grid(row=count,
                column=0,
                sticky=W)
@@ -208,7 +252,9 @@ for dessert in desserts_list:
                           font=('Dosis', 19, 'bold',),
                           onvalue=1,
                           offvalue=0,
-                          variable=desserts_var[count])
+                          variable=desserts_var[count],
+                          command=check_check)
+
     dessert.grid(row=count,
                  column=0,
                  sticky=W)
@@ -415,6 +461,7 @@ saved_buttons[8].config(command=lambda : click_button("1"))
 saved_buttons[9].config(command=lambda : click_button("2"))
 saved_buttons[10].config(command=lambda : click_button("3"))
 saved_buttons[11].config(command=lambda : click_button("*"))
+saved_buttons[12].config(command=get_result)
 saved_buttons[13].config(command=delete)
 saved_buttons[14].config(command=lambda : click_button("0"))
 saved_buttons[15].config(command=lambda : click_button("/"))
