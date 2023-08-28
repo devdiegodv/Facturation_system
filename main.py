@@ -130,11 +130,22 @@ def receipt():
             receipt_text.insert(END, f"{desserts_list[x]}\t\t{dessert.get()}\t$ {int(dessert.get()) * desserts_prices[x]}\n")
         x += 1
 
+    receipt_text.insert(END, f"-" * 60 + "\n")
+    receipt_text.insert(END, f"Food cost: \t\t\t{var_food_cost.get()}\n")
+    receipt_text.insert(END, f"Drink cost: \t\t\t{var_drink_cost.get()}\n")
+    receipt_text.insert(END, f"Dessert cost: \t\t\t{var_dessert_cost.get()}\n")
+    receipt_text.insert(END, f"-" * 60 + "\n")
+    receipt_text.insert(END, f"Sub-total: \t\t\t{var_subtotal.get()}\n")
+    receipt_text.insert(END, f"Tax: \t\t\t{var_tax.get()}\n")
+    receipt_text.insert(END, f"Total: \t\t\t{var_total.get()}\n")
+    receipt_text.insert(END, f"-" * 60 + "\n")
+    receipt_text.insert(END, "We wait for you soon!")
+
 # init tkinterrr
 app = Tk()
 
 # screen size
-app.geometry("1250x630+0+0") #1020 width - 630height - 0x - 0y
+app.geometry("1250x730+0+0") #1020 width - 630height - 0x - 0y
 
 # avoid max screen
 app.resizable(False, False) # X and Y position can't be modified
