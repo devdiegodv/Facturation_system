@@ -1,4 +1,6 @@
 from tkinter import *
+import random
+import datetime
 
 # operator calculator
 operator = ""
@@ -98,6 +100,35 @@ def total():
 
     var_tax.set(f"$ {round(tax, 2)}")
     var_total.set(f"$ {round(total, 2)}")
+
+# function to get receipt
+def receipt():
+    receipt_text.delete(1.0, END) # reset to zero text label at start app
+    num_receipt = f"N# - {random.randint(1000, 9999)}"
+    date = datetime.datetime.now()
+    date_receipt = f"{date.day}/{date.month}/{date.year} - {date.hour}:{date.minute}"
+    receipt_text.insert(END, f"Data:\t{num_receipt}\t\t{date_receipt}\n")
+    receipt_text.insert(END, f"*" * 47 + "\n" )
+    receipt_text.insert(END, "Items\tQuant.\tItems \tCost\n")
+    receipt_text.insert(END, f"-" * 59 + "\n")
+
+    x = 0
+    for food in food_text:
+        if food.get() != "0":
+            receipt_text.insert(END, f"{food_list[x]}\t\t{food.get()}\t$ {int(food.get()) * foods_prices[x]}\n")
+        x += 1
+
+    x = 0
+    for drink in drinks_text:
+        if drink.get() != "0":
+            receipt_text.insert(END, f"{drinks_list[x]}\t\t{drink.get()}\t$ {int(drink.get()) * drinks_prices[x]}\n")
+        x += 1
+
+    x = 0
+    for dessert in desserts_text:
+        if dessert.get() != "0":
+            receipt_text.insert(END, f"{desserts_list[x]}\t\t{dessert.get()}\t$ {int(dessert.get()) * desserts_prices[x]}\n")
+        x += 1
 
 # init tkinterrr
 app = Tk()
@@ -444,6 +475,7 @@ for button in buttons:
     columns += 1
 
 buttons_made[0].config(command=total)
+buttons_made[1].config(command=receipt)
 
 # receipt area
 receipt_text = Text(receipt_panel,
