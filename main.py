@@ -3,6 +3,11 @@ from tkinter import *
 # operator calculator
 operator = ""
 
+# price list
+foods_prices = [1.23, 1.65, 2.31, 3.22, 1.22, 1.99, 2.05, 2.65]
+drinks_prices = [0.25, 0.99, 1.21, 1.54, 1.08, 1.10, 2.00, 1.58]
+desserts_prices = [1.54, 1.68, 1.32, 1.97, 2.55, 2.14, 1.94, 1.74]
+
 # click button
 def click_button(number):
     global operator
@@ -30,7 +35,8 @@ def check_check():
     for f in food_box:
         if food_var[x].get() == 1:
             food_box[x].config(state=NORMAL)
-            food_box[x].delete(0, END)
+            if food_box[x].get() == "0":
+                food_box[x].delete(0, END)
             food_box[x].focus()
         else:
             food_box[x].config(state=DISABLED)
@@ -41,7 +47,8 @@ def check_check():
     for f in drinks_box:
         if drinks_var[x].get() == 1:
             drinks_box[x].config(state=NORMAL)
-            drinks_box[x].delete(0, END)
+            if drinks_box[x].get() == "0":
+                drinks_box[x].delete(0, END)
             drinks_box[x].focus()
         else:
             drinks_box[x].config(state=DISABLED)
@@ -52,12 +59,45 @@ def check_check():
     for f in desserts_box:
         if desserts_var[x].get() == 1:
             desserts_box[x].config(state=NORMAL)
-            desserts_box[x].delete(0, END)
+            if desserts_box[x].get() == "0":
+                desserts_box[x].delete(0, END)
             desserts_box[x].focus()
         else:
             desserts_box[x].config(state=DISABLED)
             desserts_text[x].set("0")
         x += 1
+
+# total button function, equations
+def total():
+    subtotal_food = 0
+    p = 0
+    for quantity in food_text:
+        subtotal_food = subtotal_food + (float(quantity.get()) * foods_prices[p])
+        p += 1
+
+    subtotal_drink = 0
+    p = 0
+    for quantity in drinks_text:
+        subtotal_drink = subtotal_drink + (float(quantity.get()) * drinks_prices[p])
+        p += 1
+
+    subtotal_dessert = 0
+    p = 0
+    for quantity in desserts_text:
+        subtotal_dessert = subtotal_dessert + (float(quantity.get()) * desserts_prices[p])
+        p += 1
+
+    sub_total = subtotal_food + subtotal_drink + subtotal_dessert
+    tax = sub_total * 0.07
+    total = sub_total + tax
+
+    var_food_cost.set(f"$ {round(subtotal_food, 2)}")
+    var_drink_cost.set(f"$ {round(subtotal_drink, 2)}")
+    var_dessert_cost.set(f"$ {round(subtotal_dessert, 2)}")
+    var_subtotal.set(f"$ {round(sub_total, 2)}")
+
+    var_tax.set(f"$ {round(tax, 2)}")
+    var_total.set(f"$ {round(total, 2)}")
 
 # init tkinterrr
 app = Tk()
@@ -333,12 +373,12 @@ dessert_cost_text = Entry(costs_panel,
 dessert_cost_text.grid(row=2, column=1, padx=41)
 
 # subtotal
-var_subtotal = Label(costs_panel,
+label_subtotal = Label(costs_panel,
                         text="Subtotal",
                         font=("Dosis", 12 ,"bold"),
                         bg="azure4",
                         fg="white")
-var_subtotal.grid(row=0, column=2, padx=41)
+label_subtotal.grid(row=0, column=2, padx=41)
 
 subtotal_text = Entry(costs_panel,
                        font=("Dosis", 12, "bold"),
@@ -350,12 +390,12 @@ subtotal_text = Entry(costs_panel,
 subtotal_text.grid(row=0, column=3, padx=41)
 
 # tax
-var_tax = Label(costs_panel,
+label_tax = Label(costs_panel,
                         text="Tax",
                         font=("Dosis", 12 ,"bold"),
                         bg="azure4",
                         fg="white")
-var_tax.grid(row=1, column=2, padx=41)
+label_tax.grid(row=1, column=2, padx=41)
 
 tax_text = Entry(costs_panel,
                        font=("Dosis", 12, "bold"),
@@ -367,12 +407,12 @@ tax_text = Entry(costs_panel,
 tax_text.grid(row=1, column=3, padx=41)
 
 # total
-var_total = Label(costs_panel,
+label_total = Label(costs_panel,
                         text="Total",
                         font=("Dosis", 12 ,"bold"),
                         bg="azure4",
                         fg="white")
-var_total.grid(row=2, column=2, padx=41)
+label_total.grid(row=2, column=2, padx=41)
 
 total_text = Entry(costs_panel,
                        font=("Dosis", 12, "bold"),
@@ -385,6 +425,8 @@ total_text.grid(row=2, column=3, padx=41)
 
 # buttons
 buttons = ["total", "receipt", "save", "reset"]
+buttons_made = []
+
 columns = 0
 for button in buttons:
     button = Button(buttons_panel,
@@ -395,9 +437,13 @@ for button in buttons:
                     bd=1,
                     width=9)
 
+    buttons_made.append(button)
+
     button.grid(row=0,
                 column=columns)
     columns += 1
+
+buttons_made[0].config(command=total)
 
 # receipt area
 receipt_text = Text(receipt_panel,
