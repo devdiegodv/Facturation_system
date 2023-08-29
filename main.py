@@ -7,9 +7,9 @@ import datetime
 operator = ""
 
 # price list
-foods_prices = [1.23, 1.65, 2.31, 3.22, 1.22, 1.99, 2.05, 2.65]
-drinks_prices = [0.25, 0.99, 1.21, 1.54, 1.08, 1.10, 2.00, 1.58]
-desserts_prices = [1.54, 1.68, 1.32, 1.97, 2.55, 2.14, 1.94, 1.74]
+foods_prices = [123, 165, 231, 322, 122, 199, 205, 265]
+drinks_prices = [25, 99, 121, 154, 108, 110, 200, 158]
+desserts_prices = [154, 168, 132, 197, 255, 24, 194, 174]
 
 # click button
 def click_button(number):
@@ -142,13 +142,45 @@ def receipt():
     receipt_text.insert(END, f"-" * 60 + "\n")
     receipt_text.insert(END, "We wait for you soon!")
 
-# function to save receipt
+# function to save receipt as txt
 def save():
     info_receipt = receipt_text.get(1.0, END)
-    file = filedialog.asksaveasfile(mode="w", defaultextension=".txt")
-    file.write(info_receipt)
-    file.close()
+    file2 = filedialog.asksaveasfile(mode="w", defaultextension=".txt")
+    file2.write(info_receipt)
+    file2.close()
     messagebox.showinfo("Information", "Your receipt has been saved")
+
+# function to reset system
+def reset():
+    receipt_text.delete(0.1, END)
+
+    for text in food_text:
+        text.set("0")
+    for text in drinks_text:
+        text.set("0")
+    for text in desserts_text:
+        text.set("0")
+
+    for box in food_box:
+        box.config(state=DISABLED)
+    for box in drinks_box:
+        box.config(state=DISABLED)
+    for box in desserts_box:
+        box.config(state=DISABLED)
+
+    for v in food_var:
+        v.set(0)
+    for v in drinks_var:
+        v.set(0)
+    for v in desserts_var:
+        v.set(0)
+
+    var_food_cost.set("")
+    var_drink_cost.set("")
+    var_dessert_cost.set("")
+    var_subtotal.set("")
+    var_tax.set("")
+    var_total.set("")
 
 # init tkinterrr
 app = Tk()
@@ -497,6 +529,7 @@ for button in buttons:
 buttons_made[0].config(command=total)
 buttons_made[1].config(command=receipt)
 buttons_made[2].config(command=save)
+buttons_made[3].config(command=reset)
 
 # receipt area
 receipt_text = Text(receipt_panel,
