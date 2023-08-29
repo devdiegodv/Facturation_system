@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import filedialog, messagebox
 import random
 import datetime
 
@@ -140,6 +141,14 @@ def receipt():
     receipt_text.insert(END, f"Total: \t\t\t{var_total.get()}\n")
     receipt_text.insert(END, f"-" * 60 + "\n")
     receipt_text.insert(END, "We wait for you soon!")
+
+# function to save receipt
+def save():
+    info_receipt = receipt_text.get(1.0, END)
+    file = filedialog.asksaveasfile(mode="w", defaultextension=".txt")
+    file.write(info_receipt)
+    file.close()
+    messagebox.showinfo("Information", "Your receipt has been saved")
 
 # init tkinterrr
 app = Tk()
@@ -487,6 +496,7 @@ for button in buttons:
 
 buttons_made[0].config(command=total)
 buttons_made[1].config(command=receipt)
+buttons_made[2].config(command=save)
 
 # receipt area
 receipt_text = Text(receipt_panel,
